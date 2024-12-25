@@ -1,0 +1,302 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, ChevronLeft, TrendingUp, Users, School, DollarSign, Target, Award } from 'lucide-react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
+const InteractivePitch = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const slides = [
+    {
+      id: 'executive',
+      title: "Revolutionizing CDL Training",
+      subtitle: "Where Technology Meets Driver Education",
+      icon: <TrendingUp size={48} className="text-blue-500" />,
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold text-blue-600">The Vision</h3>
+            <p className="text-gray-700">Transforming commercial driver training through an integrated platform that connects students, schools, and industry partners.</p>
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-500">✓</span> Student Progress Tracking
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-500">✓</span> Scholarship Management
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-500">✓</span> Industry Partnerships
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+            <h4 className="font-semibold mb-4">Key Metrics</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span>Market Size</span>
+                <span className="font-bold">$500M+</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span>Initial Partners</span>
+                <span className="font-bold">2</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span>Development Stage</span>
+                <span className="font-bold">MVP Ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'problem',
+      title: "The Problem",
+      subtitle: "Current Challenges in CDL Training",
+      icon: <Users size={48} className="text-red-500" />,
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white shadow-lg rounded-lg p-6 transform hover:scale-105 transition-transform">
+            <h3 className="text-lg font-semibold text-red-600 mb-4">Students</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li>• Limited structured preparation</li>
+              <li>• No centralized resources</li>
+              <li>• Difficulty tracking progress</li>
+            </ul>
+          </div>
+          <div className="bg-white shadow-lg rounded-lg p-6 transform hover:scale-105 transition-transform">
+            <h3 className="text-lg font-semibold text-red-600 mb-4">Instructors</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li>• Manual tracking systems</li>
+              <li>• Limited visibility</li>
+              <li>• No standardized metrics</li>
+            </ul>
+          </div>
+          <div className="bg-white shadow-lg rounded-lg p-6 transform hover:scale-105 transition-transform">
+            <h3 className="text-lg font-semibold text-red-600 mb-4">Industry</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li>• Fragmented recruitment</li>
+              <li>• Inefficient ad spend</li>
+              <li>• Limited qualified candidates</li>
+            </ul>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'solution',
+      title: "Our Solution",
+      subtitle: "Integrated Platform for Success",
+      icon: <Award size={48} className="text-green-500" />,
+      content: (
+        <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+              <h3 className="text-xl font-semibold mb-4">Platform Features</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2">
+                  <span>○</span> Real-time progress tracking
+                </li>
+                <li className="flex items-center gap-2">
+                  <span>○</span> Comprehensive test prep
+                </li>
+                <li className="flex items-center gap-2">
+                  <span>○</span> Scholarship management
+                </li>
+                <li className="flex items-center gap-2">
+                  <span>○</span> Industry partner portal
+                </li>
+              </ul>
+            </div>
+            <div className="bg-white shadow-lg rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-green-600 mb-4">Key Differentiators</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li>• Built by industry insider</li>
+                <li>• Direct partnerships</li>
+                <li>• Integrated scholarship system</li>
+                <li>• Data-driven insights</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'market',
+      title: "Market Opportunity",
+      subtitle: "$500M+ Total Addressable Market",
+      icon: <Target size={48} className="text-purple-500" />,
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-6">
+            <div className="bg-purple-50 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-purple-600 mb-4">Market Size</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li>• 450,000+ new CDL students annually</li>
+                <li>• 2,800+ CDL training schools</li>
+                <li>• $5M+ in test prep segment</li>
+                <li>• $500M+ in CDL training advertising</li>
+              </ul>
+            </div>
+          </div>
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-purple-600 mb-4">Initial Target</h3>
+            <div className="space-y-4">
+              <div className="p-3 bg-purple-50 rounded">
+                <h4 className="font-semibold">Phase 1: Illinois Focus</h4>
+                <p className="text-sm text-gray-600">Starting with Kishwaukee College</p>
+              </div>
+              <div className="p-3 bg-purple-50 rounded">
+                <h4 className="font-semibold">Phase 2: Regional Expansion</h4>
+                <p className="text-sm text-gray-600">Midwest CDL schools</p>
+              </div>
+              <div className="p-3 bg-purple-50 rounded">
+                <h4 className="font-semibold">Phase 3: National Rollout</h4>
+                <p className="text-sm text-gray-600">Major trucking partnerships</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'revenue',
+      title: "Business Model",
+      subtitle: "Multiple Revenue Streams",
+      icon: <DollarSign size={48} className="text-yellow-500" />,
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+            <h3 className="text-xl font-semibold mb-4">Revenue Streams</h3>
+            <ul className="space-y-3">
+              <li>• School/Instructor subscriptions</li>
+              <li>• Advertising partnerships</li>
+              <li>• Scholarship administration fees</li>
+              <li>• Premium student features</li>
+              <li>• Placement service fees</li>
+            </ul>
+          </div>
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-yellow-600 mb-4">Financial Projections</h3>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart
+                  data={[
+                    { month: 'M1', revenue: 5000 },
+                    { month: 'M6', revenue: 25000 },
+                    { month: 'M12', revenue: 100000 },
+                    { month: 'M18', revenue: 250000 }
+                  ]}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="revenue" stroke="#EAB308" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'call-to-action',
+      title: "Partnership Opportunity",
+      subtitle: "Join Our Growth Journey",
+      icon: <School size={48} className="text-indigo-500" />,
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-6">
+            <div className="bg-indigo-50 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-indigo-600 mb-4">Partnership Benefits</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li>• Early market access</li>
+                <li>• Preferred pricing</li>
+                <li>• Product development input</li>
+                <li>• Data insights access</li>
+              </ul>
+            </div>
+            <div className="bg-white shadow-lg rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-indigo-600 mb-4">Next Steps</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li>1. Schedule demo presentation</li>
+                <li>2. Review partnership options</li>
+                <li>3. Begin pilot program</li>
+              </ul>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-6 text-white">
+            <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
+            <div className="space-y-4">
+              <div className="p-4 bg-white bg-opacity-10 rounded">
+                <h4 className="font-semibold">Ready to Transform CDL Training?</h4>
+                <p className="text-sm">Let's discuss how we can work together</p>
+              </div>
+              <button className="w-full bg-white text-indigo-600 font-semibold py-2 px-4 rounded hover:bg-opacity-90 transition-colors">
+                Schedule Meeting
+              </button>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  return (
+    <div className="max-w-7xl mx-auto p-6 bg-gray-50 min-h-screen">
+      <div className="flex justify-between items-center mb-8">
+        <button 
+          onClick={prevSlide}
+          className="p-2 rounded-full bg-white shadow-lg hover:bg-gray-50 transition-colors"
+          disabled={currentSlide === 0}
+        >
+          <ChevronLeft size={24} className={currentSlide === 0 ? "text-gray-300" : "text-gray-600"} />
+        </button>
+        <div className="text-center">
+          <div className="flex justify-center mb-4">
+            {slides[currentSlide].icon}
+          </div>
+          <h2 className="text-3xl font-bold text-gray-800">{slides[currentSlide].title}</h2>
+          <p className="text-gray-600 mt-2">{slides[currentSlide].subtitle}</p>
+        </div>
+        <button 
+          onClick={nextSlide}
+          className="p-2 rounded-full bg-white shadow-lg hover:bg-gray-50 transition-colors"
+          disabled={currentSlide === slides.length - 1}
+        >
+          <ChevronRight size={24} className={currentSlide === slides.length - 1 ? "text-gray-300" : "text-gray-600"} />
+        </button>
+      </div>
+
+      <div className="flex justify-center mb-8">
+        <div className="flex space-x-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-colors ${
+                index === currentSlide ? "bg-blue-500" : "bg-gray-300"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3
